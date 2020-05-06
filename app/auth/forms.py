@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,PasswordField,SubmitField, ValidationError
+from wtforms import StringField,PasswordField,SubmitField, ValidationError, BooleanField
 from wtforms.validators import Email,Required,EqualTo
 from ..models import User
 
@@ -28,3 +28,13 @@ class SignUpForm(FlaskForm):
         '''
         if User.query.filter_by(username=data_field.data):
             raise ValidationError('The username already exists')
+
+class LoginForm(FlaskForm):
+
+    '''
+    class facilitates the creation of login from object
+    '''
+    email = StringField('Enter Your Email',validators=[Required(),Email()])
+    password = StringField('Enter Your Password',validators=[Required()])
+    remember = BooleanField("Remember Me")
+    submit = StringField('Sign In')
