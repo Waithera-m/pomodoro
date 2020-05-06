@@ -1,0 +1,25 @@
+from flask_bootstrap import Bootstrap
+from flask import Flask
+from config import config_options
+
+bootstrap = Bootstrap()
+
+def create_app(config_name):
+
+    '''
+    application factory facilitates app and extensions initializaton and blueprint registration
+    '''
+
+    app=Flask(__name__)
+
+    #app configurations
+    app.config.from_object(config_options[config_name])
+
+    #extension initialization
+    bootstrap.init_app(app)
+
+    #blueprint registration
+    from .main import main as main_blueprint
+    app.register_blueprint(main_blueprint)
+
+    return app
