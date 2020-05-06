@@ -3,7 +3,7 @@ from flask import render_template,url_for,redirect,flash,abort,request
 from .forms import SignUpForm,LoginForm
 from ..models import User
 from .. import db
-from flask_login import login_user
+from flask_login import login_user,logout_user,login_required
 
 @auth.route('/login')
 def signin():
@@ -43,4 +43,14 @@ def register():
 
         title = 'New Account'
 
-    return render_template('auth/register.html',form=form,title=title)
+    return render_template('auth/register.html',form=form)
+
+@auth.route('/logout')
+@login_required
+def logout():
+
+    '''
+    view function logs out users
+    '''
+    logout_user()
+    return redirect(url_for("main.index"))
