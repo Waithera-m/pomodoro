@@ -1,7 +1,8 @@
 from . import db
 from werkzeug.seurity import generate_password_hash,check_password_hash
+from flask_login import UserMixin
 
-class User(db.Model):
+class User(db.Model,UserMixin):
 
     '''
     class facilitates the creation of user objects
