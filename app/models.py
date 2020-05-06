@@ -1,6 +1,15 @@
 from . import db
 from werkzeug.seurity import generate_password_hash,check_password_hash
 from flask_login import UserMixin
+from . import login_manager
+
+@login_manager.user_loader
+def load_user(user_id):
+
+    '''
+    callback function retrieves user when unique identifier is passed
+    '''
+    return User.query.get(int(user_id))
 
 class User(db.Model,UserMixin):
 
