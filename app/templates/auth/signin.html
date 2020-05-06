@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% content block %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            {% for message in get_flashed_messages() %}
+            <div class="alert alert-danger">
+                <button type="button" class="close" dat-dismiss="alert">&times;</button>
+                {{message}}
+            </div>
+            {% endfor %}
+            {{wtf.quick_form(login_form)}}
+            <p>Don't have an account? <a href="{{url_for('auth.register')}}">Sign Up</a></p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+{% endblock %}
