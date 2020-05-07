@@ -22,7 +22,7 @@ class User(db.Model,UserMixin):
     username = db.Column(db.String(255))
     email = db.Column(db.String(255))
     bio = db.Column(db.String(255))
-    profile_photo_pic = db.Column(db.String())
+    profile_photo_path = db.Column(db.String())
     role_id = (db.Column(db.Integer,db.ForeignKey('roles.id')))
     password_hash = db.Column(db.String)
 
