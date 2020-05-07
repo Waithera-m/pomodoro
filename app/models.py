@@ -20,7 +20,10 @@ class User(db.Model,UserMixin):
 
     id = db.Column(db.Integer,primary_key=True)
     username = db.Column(db.String(255))
-    email = db.Column(db.String)
+    email = db.Column(db.String(255))
+    bio = db.Column(db.String(255))
+    profile_photo_pic = db.Column(db.String())
+    role_id = (db.Column(db.Integer,db.ForeignKey('roles.id')))
     password_hash = db.Column(db.String)
 
     @property
@@ -54,3 +57,21 @@ class User(db.Model,UserMixin):
         function eases debugging
         '''
         return f'User {self.username}'
+
+class Role(db.Model):
+
+    '''
+    model facilitates the creation of role objects
+    '''
+    __tablename__ = 'roles'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    name =  db.Column(db.String(255))
+    users = db.relationship('User',backref='role',lazy="dynamic")
+
+    def __repr__(self):
+        
+        '''
+        function promotes debugging
+        '''
+        return f'User {self.name}'
