@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            {% if user.profile_photo_path %}
+            <img src="{{url_for('static',filename=user.profile_path)}}" alt="" class="img-thumbnail">
+            {% else %}
+            <h5>You have not uploaded a profile photo</h5>
+            {% endif %}
+        </div>
+        <div class="col-md-4">
+            <h3>{{user.username|upper}}</h3>
+            {% if user.bio %}
+            <p>{{user.bio}}</p>
+            {% else %}
+            <p>{{user.username|capitalize}} has no bio</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
