@@ -44,7 +44,7 @@ class User(db.Model,UserMixin):
         '''
         function takes entered password hashes it and compares the newly hashed password with the hashed password saved in the database
         '''
-        return check_password_hash(self.password_hash,pasword)
+        return check_password_hash(self.password_hash,password)
 
 
 

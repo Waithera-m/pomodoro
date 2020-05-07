@@ -10,8 +10,8 @@ class SignUpForm(FlaskForm):
     '''
     email = StringField('Enter Your Email Address', validators=[Required(),Email()])
     username = StringField('Enter Your Username', validators=[Required()])
-    password = StringField('Enter Your Password',validators=[Required(), EqualTo('password_confirm',message='Both passwords have to match')])
-    password_confirm = StringField('Reenter Your Password', validators=[Required()])
+    password = PasswordField('Enter Your Password',validators=[Required(), EqualTo('password_confirm',message='Both passwords have to match')])
+    password_confirm = PasswordField('Reenter Your Password', validators=[Required()])
     submit = SubmitField('Sign Up')
 
     def validate_email(self,data_field):
@@ -19,14 +19,15 @@ class SignUpForm(FlaskForm):
         '''
         function checks if an account in the database already has the provided email
         '''
-        if User.query.filter_by(email =data_field.data).first():
+        if User.query.filter_by(email=data_field.data).first():
             raise ValidationError('The email already exists')
+        
     def validate_username(self,data_field):
 
         '''
         function checks if there is already a user with the provided username
         '''
-        if User.query.filter_by(username=data_field.data):
+        if User.query.filter_by(username=data_field.data).first():
             raise ValidationError('The username already exists')
 
 class LoginForm(FlaskForm):
@@ -35,6 +36,6 @@ class LoginForm(FlaskForm):
     class facilitates the creation of login from object
     '''
     email = StringField('Enter Your Email',validators=[Required(),Email()])
-    password = StringField('Enter Your Password',validators=[Required()])
+    password = PasswordField('Enter Your Password',validators=[Required()])
     remember = BooleanField("Remember Me")
-    submit = StringField('Sign In')
+    submit = SubmitField('Sign In')

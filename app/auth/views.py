@@ -5,7 +5,7 @@ from ..models import User
 from .. import db
 from flask_login import login_user,logout_user,login_required
 
-@auth.route('/login')
+@auth.route('/login',methods=["GET","POST"])
 def signin():
 
     '''
