@@ -4,7 +4,7 @@ from .forms import SignUpForm,LoginForm
 from ..models import User
 from .. import db
 from flask_login import login_user,logout_user,login_required
-from ..email import welcome_message
+from ..email import email_message
 
 @auth.route('/login',methods=["GET","POST"])
 def signin():
@@ -40,7 +40,7 @@ def register():
         db.session.add(user)
         db.session.commit()
 
-        welcome_message=("To Pomodoro","email/welcome_user",user.email,user=user)
+        email_message("To Pomodoro","email/welcome_user",user.email,user=user)
 
         return redirect(url_for('auth.signin'))
 

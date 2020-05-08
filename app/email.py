@@ -5,7 +5,7 @@ from . import mail
 sender_pref = 'Welcome '
 sender_email = 'watchlist.flask@gmail.com'
 
-def welcome_message(subject,template,to,**kwargs):
+def email_message(subject,template,to,**kwargs):
 
     '''
     function facilitate the creation of the welcome email that users will receive once they sign up
