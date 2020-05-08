@@ -4,6 +4,7 @@ from ..models import User
 from .forms import EditProfile
 from .. import db,photos
 from flask_login import login_required
+import time
 
 @main.route('/')
 def index():
@@ -65,4 +66,6 @@ def update_pic(uname):
         user.profile_photo_path=path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
+
+
 
