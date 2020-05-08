@@ -1,0 +1,5 @@
+Hello {{user.username}}
+
+Welcome to You Got This
+
+Thank you for signing up and welcome to our pitch-obsessed family. Please share your pitches and vote on other users' pitches.
